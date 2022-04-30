@@ -1,0 +1,16 @@
+{
+  "api": "1.0.0",
+  "widgetApi": "1.0.0",
+  "editorType": [
+    "figjam"
+  ],
+  "containsWidget": true,
+  "id": "1047172873295538762",
+  "name": "Teams",
+  "main": "build/main.js",
+  "ui": "build/ui.js",
+  "permissions": [
+    "currentuser",
+    "activeusers"
+  ]
+}

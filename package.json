@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@create-figma-plugin/ui": "^1.7.3",
+    "@create-figma-plugin/utilities": "^1.7.3",
+    "preact": "^10"
+  },
+  "devDependencies": {
+    "@create-figma-plugin/build": "^1.7.3",
+    "@create-figma-plugin/tsconfig": "^1.7.3",
+    "@figma/plugin-typings": "1.45.0",
+    "@figma/widget-typings": "^1.2.3",
+    "typescript": "^4"
+  },
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "watch": "build-figma-plugin --typecheck --watch"
+  },
+  "figma-plugin": {
+    "editorType": [
+      "figjam"
+    ],
+    "containsWidget": true,
+    "permissions": [
+      "currentuser",
+      "activeusers"
+    ],
+    "id": "1047172873295538762",
+    "name": "Teams",
+    "main": "src/main.tsx",
+    "ui": "src/ui.tsx"
+  }
+}
