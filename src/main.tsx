@@ -52,7 +52,7 @@ function TeamsWidget() {
   const memberships = useSyncedMap<Membership>('memberships');
   const teamNames = useSyncedMap<string>('teamNames');
 
-  const [currentUser, _] = useSyncedState("currentUser", () => figma.currentUser);
+  const currentUser = () => figma.currentUser;
 
   const widgetNodeId = useWidgetId();
 
@@ -90,7 +90,7 @@ function TeamsWidget() {
           }
           break;
         case 'unjoin':
-          memberships.delete(currentUser?.id || '');
+          memberships.delete(currentUser()?.id || '');
           break;
       }
     },
@@ -216,6 +216,7 @@ function TeamsWidget() {
             fontSize={16}
             lineHeight={24}
             width="fill-parent"
+            height={24}
             inputBehavior='truncate'
             fill={colors.fill}
             placeholder={`Team ${teamNumber + 1}`}
@@ -246,17 +247,17 @@ function TeamsWidget() {
           <Button
             color={colors.fill}
             onClick={() => {
-              if (!currentUser?.id) {
+              if (!currentUser()?.id) {
                 figma.notify("Log in to join a team!", { error: true });
               } else if (maxPerTeam > 0 && members.length >= maxPerTeam) {
                 figma.notify("This team is full!", { error: true });
-              } else if (members.find(({ id }) => id === currentUser?.id)) {
+              } else if (members.find(({ id }) => id === currentUser()?.id)) {
                 figma.notify("You're already on this team!", { error: true });
               } else {
-                memberships.set(currentUser?.id || "", {
+                memberships.set(currentUser()?.id || "", {
                   team: teamNumber,
-                  name: currentUser?.name,
-                  photoUrl: currentUser?.photoUrl || ''
+                  name: currentUser()?.name || '',
+                  photoUrl: currentUser()?.photoUrl || ''
                 });
               }
             }}>
